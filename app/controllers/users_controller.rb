@@ -1,7 +1,16 @@
 class UsersController < ApplicationController
-	before_filter :signed_in_user,	only: [:index, :edit, :update, :destroy]
+	before_filter :signed_in_user,		only: [:index, :edit, :update, :destroy]
 	before_filter :correct_user,		only: [:edit, :update]
 	before_filter :admin_user,			only: :destroy
+	before_filter :cannot_create_user, only: [:new, :create]
+
+	def cannot_create_user
+		if signed_in?
+			redirect_to user_path(current_user)
+			flash[:notice] = "You have to sign out before you can create a new user."
+		else
+		end
+	end
 
 	def index
 		@users = User.paginate(page: params[:page])
@@ -12,17 +21,27 @@ class UsersController < ApplicationController
 	end
 
 	def new
-		@user = User.new
+#		if signed_in?
+#			redirect_to user_path(current_user)
+#			flash[:notice] = "You have to sign out before you can create a new user."
+#		else
+			@user = User.new
+#		end
 	end
 
 	def create
-		@user = User.new(params[:user])
-		if @user.save
-			sign_in @user
-			flash[:success] = "Welcome to the Sample App!"
-			redirect_to @user
-		else
-			render 'new'
+#		if signed_in?
+#			redirect_to user_path(current_user)
+#			flash[:notice] = "You have to sign out before you can create a new user."
+#		else
+			@user = User.new(params[:user])
+			if @user.save
+				sign_in @user
+				flash[:success] = "Welcome to the Sample App!"
+				redirect_to @user
+			else
+				render 'new'
+#			end
 		end
 	end
 
