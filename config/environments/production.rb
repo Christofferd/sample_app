@@ -68,4 +68,7 @@ SampleApp::Application.configure do
   # Force all access to the app over SSL, use Strict-Transport-Security,
   # and use secure cookies.
   config.force_ssl = true
+
+    # To get URL's to work inside of mailers - change the URL when you buy it...
+  config.action_mailer.default_url_options = { :host => "bookkeep.er" }
 end
