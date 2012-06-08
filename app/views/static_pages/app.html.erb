@@ -1,0 +1,13 @@
+<% if signed_in? %>
+  content here...
+<% else %>
+  <div class="center hero-unit">
+    <h1>Welcome to bookkeep.er</h1>
+
+    <h2>
+      Balance the books with your bank - in just a few clicks.
+    </h2>
+
+    <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+  </div>
+<% end %>

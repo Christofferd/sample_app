@@ -10,8 +10,9 @@ SampleApp::Application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :password_resets
 
-  root to: 'static_pages#home'
+  root to: 'static_pages#app'
 
+  match '/board',   to: 'static_pages#home'
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete

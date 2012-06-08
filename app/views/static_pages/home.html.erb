@@ -1,29 +1,17 @@
-<% if signed_in? %>
   <div class="row">
     <aside class="span4">
       <section>
         <%= render 'shared/user_info' %>
       </section>
       <section>
-        <%= render 'shared/stats' %>
+        <%= render 'shared/stats' if current_user.admin?%>
       </section>
       <section>
         <%= render 'shared/micropost_form' %>
       </section>
     </aside>
     <div class="span8">
-      <h3>Micropost Feed</h3>
+      <h3>Discussion board</h3>
       <%= render 'shared/feed' %>
     </div>
-  </div>  
-<% else %>
-  <div class="center hero-unit">
-    <h1>Welcome to bookkeep.er</h1>
-
-    <h2>
-      Balance the books with your bank - in just a few clicks.
-    </h2>
-
-    <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
   </div>
-<% end %> 

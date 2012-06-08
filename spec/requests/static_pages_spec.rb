@@ -17,7 +17,7 @@ describe "Static pages" do
         FactoryGirl.create(:micropost, user: user, content: "Lorem ipsum")
         FactoryGirl.create(:micropost, user: user, content: "Dolor sit amet")
         sign_in user
-        visit root_path
+        visit board_path
       end
 
       it "should render the user's feed" do
@@ -26,16 +26,16 @@ describe "Static pages" do
         end
       end
 
-      describe "follower/following counts" do
-        let(:other_user) { FactoryGirl.create(:user) }
-        before do
-          other_user.follow!(user)
-          visit root_path
-        end
-
-        it { should have_link("0 following", href: following_user_path(user)) }
-        it { should have_link("1 followers", href: followers_user_path(user)) }  
-      end
+#      describe "follower/following counts" do
+#        let(:other_user) { FactoryGirl.create(:user) }
+#        before do
+#          other_user.follow!(user)
+#          visit board_path
+#        end
+#
+#        it { should have_link("0 following", href: following_user_path(user)) }
+#        it { should have_link("1 followers", href: followers_user_path(user)) }  
+#      end
     end
   end
 
@@ -67,8 +67,6 @@ describe "Static pages" do
     page.should have_selector 'title', text: full_title('Sign in')
     click_link "About"
     page.should have_selector 'title', text: full_title('About Us')
-    click_link "Help"
-    page.should have_selector 'title', text: full_title('Help')
     click_link "Contact"
     page.should have_selector 'title', text: full_title('Contact')
     click_link "Home"

@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
-	before_filter :signed_in_user,		only: [:index, :edit, :update, :destroy, :following, :followers]
-	before_filter :correct_user,		only: [:edit, :update]
-	before_filter :admin_user,			only: :destroy
-	before_filter :cannot_create_user, only: [:new, :create]
+	before_filter :signed_in_user,			only: [:index, :edit, :update, :destroy, :following, :followers]
+	before_filter :correct_user,			only: [:edit, :update]
+	before_filter :admin_user,				only: [:destroy, :index, :following, :followers]
+	before_filter :cannot_create_user, 		only: [:new, :create]
+	before_filter :correct_or_admin_user,	only: [:show, :edit]
 
 	def cannot_create_user
 		if signed_in?
@@ -77,5 +78,10 @@ class UsersController < ApplicationController
 
 		def admin_user
 			redirect_to(root_path) unless current_user.admin?
+		end
+
+		def correct_or_admin_user
+			@user = User.find(params[:id])
+			redirect_to(root_path) unless current_user?(@user) or current_user.admin?
 		end
 end
