@@ -14,3 +14,35 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree .
+
+$(function () {
+  // Sorting and pagination links.
+  $('#products th a').live('click', 
+    function () {
+      $.getScript(this.href);
+      return false;
+    }
+  );
+  
+  // Search form.
+  $('#products_search input').keyup(function () {
+    $.get($("#products_search").attr("action"), $("#products_search").serialize(), null, 'script');
+    return false;
+  });
+});
+
+$(function () {
+  // Sorting and pagination links.
+  $('#orders th a').live('click', 
+    function () {
+      $.getScript(this.href);
+      return false;
+    }
+  );
+  
+  // Search form.
+  $('#orders_search input').keyup(function () {
+    $.get($("#orders_search").attr("action"), $("#orders_search").serialize(), null, 'script');
+    return false;
+  });
+});

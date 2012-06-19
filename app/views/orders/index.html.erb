@@ -1,0 +1,6 @@
+<%= form_tag orders_path, :method => 'get', :id => "orders_search" do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %> <%= submit_tag "Search", :number => nil, class: "btn btn-large btn-primary" %>
+  </p>
+  <div id="orders"><%= render 'orders' %></div>
+<% end %>

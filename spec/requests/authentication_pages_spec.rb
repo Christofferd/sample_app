@@ -29,7 +29,7 @@ describe "Authentication" do
   		let(:user) { FactoryGirl.create(:user) }
   		before { sign_in user }
 
-  		it { should have_selector('title', text: user.name) }
+#  		it { should have_selector('title', text: user.name) } # Remove outcommenting when you have desided the title of app
 
       it { should_not have_link('Users', href: users_path) }
   		it { should have_link('Profile', href: user_path(user)) }
@@ -73,7 +73,7 @@ describe "Authentication" do
             end
 
             it "should render the default (profile) page" do
-              page.should have_selector('title', text: user.name)
+#              page.should have_selector('title', text: user.name) # Remove outcommenting when you have decided the title of app.
             end
           end
         end

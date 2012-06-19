@@ -17,7 +17,7 @@ html {
 }
 
 body {
-  padding-top: 60px;
+  padding-top: 60px; /* distance from the top to the body */
 }
 
 section {
@@ -29,9 +29,9 @@ textarea {
 }
 
 .center {
-  text-align: center;
+  text-align: center; /* alignment of the Sign up button */
 	h1 {
-  	  margin-bottom: 10px;
+  	  margin-bottom: 10px; /* bottom margin for h1 texts on the front page */
 	}
 }
 
@@ -237,7 +237,22 @@ input, textareas, select, .uneditable-input {
 aside {
   textarea {
     height: 300px;
-    width: 291px;
+    width: 285px;
     margin-bottom: 15px;
   }
 }
+
+/* Product descending ascending arrows - works if the image is called externaly, but not when it gets called internally */
+
+.pretty th .current {
+  padding-right: 50px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+.pretty th .asc { 
+  background-image: url(app/assets/images/up_arrow.gif); 
+}
+
+.pretty th .desc { 
+  background-image: url(app/assets/images/down_arrow.gif);
+  }

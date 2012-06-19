@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120607210223) do
+ActiveRecord::Schema.define(:version => 20120617181459) do
 
   create_table "microposts", :force => true do |t|
     t.string   "content"
@@ -21,6 +21,48 @@ ActiveRecord::Schema.define(:version => 20120607210223) do
   end
 
   add_index "microposts", ["user_id", "created_at"], :name => "index_microposts_on_user_id_and_created_at"
+
+  create_table "order_lines", :force => true do |t|
+    t.string   "product_sku"
+    t.integer  "quantity_ordered"
+    t.integer  "quantity_delivered"
+    t.integer  "quantity_invoiced"
+    t.integer  "price_pr_unit"
+    t.integer  "order_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "orders", :force => true do |t|
+    t.string   "number"
+    t.datetime "date"
+    t.string   "state",      :default => "open"
+    t.string   "payment"
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "address"
+    t.string   "address2"
+    t.string   "zip_code"
+    t.string   "city"
+    t.string   "country"
+    t.string   "mail"
+    t.string   "phone"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+  end
+
+  create_table "products", :force => true do |t|
+    t.integer  "sku"
+    t.string   "name"
+    t.integer  "stock"
+    t.integer  "price"
+    t.integer  "ean"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+  end
+
+  add_index "products", ["sku", "name", "ean"], :name => "index_products_on_sku_and_name_and_ean"
 
   create_table "relationships", :force => true do |t|
     t.integer  "follower_id"
