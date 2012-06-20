@@ -1,20 +1,24 @@
-	<%= hidden_field_tag :direction, params[:direction] %>
-  <%= hidden_field_tag :sort, params[:sort] %>
-  <table class="pretty">
-  <tr>
-    <th><%= sortable "sku", "SKU" %></th>
-    <th><%= sortable "name", "Name" %></th>
-    <th><%= sortable "stock", "Stock" %></th>
-    <th><%= sortable "price", "Price" %></th>
-    <th><%= sortable "ean", "EAN" %></th>
-  </tr>
-	<% for product in @products %>
-  <tr>
-    <td><%= product.sku %></td>
-    <td><%= product.name %></td>
-    <td><%= product.stock %></td>
-    <td><%= product.price %></td>
-    <td><%= product.ean %></td>
-  </tr>
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th><%= sortable "sku", "SKU" %></th>
+      <th><%= sortable "name", "Product name" %></th>
+      <th><%= sortable "stock", "Stock" %></th>
+      <th><%= sortable "price", "Price" %></th>
+      <th><%= sortable "ean", "EAN number" %></th>
+    </tr>
+  </thead>
+  	<% for product in @products %>
+  <tbody>
+    <tr>
+      <td><%= product.sku %></td>
+      <td><%= product.name %></td>
+      <td><%= product.stock %></td>
+      <td><%= product.price %></td>
+      <td><%= product.ean %></td>
+    </tr>
+  </tbody>
   <% end %>
 </table>

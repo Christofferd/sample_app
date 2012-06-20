@@ -4,7 +4,10 @@ class ProductsController < ApplicationController
 
 	def index
 		@user = current_user
-		@products = @user.products.search(params[:search]).order(sort_column + ' ' + sort_direction)
+	  	@search = @user.products.search do
+	    fulltext params[:search]
+	  end
+	  @products = @search.results
 	end
 
 	private

@@ -1,6 +1,6 @@
-<%= form_tag orders_path, :method => 'get', :id => "orders_search" do %>
+<%= form_tag orders_path, :method => :get, :id => "orders_search" do %>
   <p>
-    <%= text_field_tag :search, params[:search] %> <%= submit_tag "Search", :number => nil, class: "btn btn-large btn-primary" %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search by order number, customer name, address, zip code, city, mail address & phone number..." %>
   </p>
   <div id="orders"><%= render 'orders' %></div>
 <% end %>

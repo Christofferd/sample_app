@@ -4,7 +4,10 @@ class OrdersController < ApplicationController
 
 	def index
 		@user = current_user
-		@orders = @user.orders.search(params[:search]).order(sort_column + ' ' + sort_direction)
+	  	@search = @user.orders.search do
+	    fulltext params[:search]
+	  end
+	  @orders = @search.results
 	end
 
 	private

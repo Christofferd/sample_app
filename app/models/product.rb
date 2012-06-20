@@ -4,11 +4,7 @@ class Product < ActiveRecord::Base
 
   validates :user_id, presence: true
 
-	def self.search(search)
-		if search
-		  where('name LIKE ?', "%#{search}%")
-		else
-		  scoped
-		end
-	end
+  searchable do
+    text :ean, :sku, :name
+  end
 end

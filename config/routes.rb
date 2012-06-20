@@ -11,7 +11,7 @@ SampleApp::Application.routes.draw do
   resources :password_resets
   resources :products
   resources :orders
-  resources :order_lines
+  resources :suppliers
 
   root to: 'static_pages#app'
 

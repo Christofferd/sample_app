@@ -1,0 +1,11 @@
+<% provide(:title, "Edit supplier") %> 
+<h1>Edit supplier</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@supplier) do |f| %>
+      <%= render 'fields', f: f %>
+      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>

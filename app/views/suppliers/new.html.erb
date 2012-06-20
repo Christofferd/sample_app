@@ -1,0 +1,11 @@
+<% provide(:title, "Create new supplier") %> 
+<h1>Create new supplier</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@supplier) do |f| %>
+      <%= render 'fields', f: f %>
+      <%= f.submit "Create supplier", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>

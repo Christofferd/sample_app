@@ -1,0 +1,22 @@
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th><%= sortable "id", "ID" %></th>
+      <th><%= sortable "name", "Supplier name" %></th>
+      <th>Edit supplier</th>
+    </tr>
+  </thead>
+  	<% for supplier in @suppliers %>
+  <tbody>
+    <tr>
+      <td><%= supplier.id %></td>
+      <td><%= link_to supplier.name, supplier_path(supplier) %></td>
+      <td>
+        <%= link_to 'Edit', edit_supplier_path(supplier), :class => 'btn btn-mini' %>
+        <%= link_to 'Destroy', supplier_path(supplier), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+    </tr>
+  </tbody>
+  <% end %>
+</table>

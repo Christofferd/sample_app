@@ -16,15 +16,13 @@
 //= require_tree .
 
 $(function () {
-  // Sorting and pagination links.
-  $('#products th a').live('click', 
+  $('#products th a').live('click',
     function () {
       $.getScript(this.href);
       return false;
     }
   );
   
-  // Search form.
   $('#products_search input').keyup(function () {
     $.get($("#products_search").attr("action"), $("#products_search").serialize(), null, 'script');
     return false;
@@ -32,15 +30,27 @@ $(function () {
 });
 
 $(function () {
-  // Sorting and pagination links.
-  $('#orders th a').live('click', 
+  $('#suppliers th a').live('click',
     function () {
       $.getScript(this.href);
       return false;
     }
   );
   
-  // Search form.
+  $('#suppliers_search input').keyup(function () {
+    $.get($("#suppliers_search").attr("action"), $("#suppliers_search").serialize(), null, 'script');
+    return false;
+  });
+});
+
+$(function () {
+  $('#orders th a').live('click',
+    function () {
+      $.getScript(this.href);
+      return false;
+    }
+  );
+  
   $('#orders_search input').keyup(function () {
     $.get($("#orders_search").attr("action"), $("#orders_search").serialize(), null, 'script');
     return false;
