@@ -14,6 +14,9 @@ group :development, :test do
   gem 'rspec-rails', '2.10.0'
   gem 'annotate', '~> 2.4.1.beta'
   gem 'sunspot_solr'
+  gem 'quiet_assets'
+  gem 'thin'
+  gem 'debugger'
 end
 
 # Gems used only for assets and not required

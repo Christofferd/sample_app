@@ -1,0 +1,27 @@
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+<%= hidden_field_tag :supplier_id, params[:supplier_id] %>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th><%= sortable "sku", "SKU" %></th>
+      <th><%= sortable "name", "Product name" %></th>
+      <th><%= "Connection" %></th>
+      <th><%= sortable "stock", "Stock" %></th>
+      <th><%= sortable "price", "Price" %></th>
+      <th><%= sortable "ean", "EAN number" %></th>
+    </tr>
+  </thead>
+  	<% for supplierproduct in @supplierproducts %>
+  <tbody>
+    <tr>
+      <td><%= supplierproduct.sku %></td>
+      <td><%= supplierproduct.name %></td>
+      <td><%= render 'product_search' %></td>
+      <td><%= supplierproduct.stock %></td>
+      <td><%= supplierproduct.price %></td>
+      <td><%= supplierproduct.ean %></td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>

@@ -9,9 +9,20 @@ SampleApp::Application.routes.draw do
   resources :microposts,      only: [:create, :destroy]
   resources :relationships,   only: [:create, :destroy]
   resources :password_resets
-  resources :products
+  resources :products do
+    member do
+      get :following
+    end
+  end
   resources :orders
   resources :suppliers
+  resources :supplierproducts do
+    member do
+      get :followers
+    end
+  end
+  resources :purchases
+  resources :purchaselines
 
   root to: 'static_pages#app'
 

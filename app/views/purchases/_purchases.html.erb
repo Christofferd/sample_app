@@ -1,0 +1,30 @@
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+<table class="table table-bordered table-condensed">
+  <thead>
+    <tr>
+      <th><%= sortable "id", "ID" %></th>
+      <th><%= sortable "supplier_id", "Supplier ID" %></th>
+      <th><%= sortable "supplier", "Supplier name" %></th>
+      <th><%= sortable "state", "Status" %></th>
+      <th><%= sortable "delivery_number", "Delivery number" %></th>
+      <th><%= sortable "invoice_number", "Invoice number" %></th>
+      <th><%= sortable "shipping_fee", "Shipping fee" %></th>
+      <th><%= sortable "date", "Invoice date" %></th>
+    </tr>
+  </thead>
+  	<% for purchase in @purchases %>
+  <tbody>
+    <tr>
+      <td><%= purchase.id %></td>
+      <td><%= purchase.supplier_id %></td>
+      <td><%= purchase.supplier.name %></td>
+      <td><%= purchase.state %></td>
+      <td><%= purchase.delivery_number %></td>
+      <td><%= purchase.invoice_number %></td>
+      <td><%= purchase.shipping_fee %></td>
+      <td><%= purchase.date %></td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>

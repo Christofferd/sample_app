@@ -30,6 +30,34 @@ $(function () {
 });
 
 $(function () {
+  $('#purchases th a').live('click',
+    function () {
+      $.getScript(this.href);
+      return false;
+    }
+  );
+  
+  $('#purchases_search input').keyup(function () {
+    $.get($("#purchases_search").attr("action"), $("#purchases_search").serialize(), null, 'script');
+    return false;
+  });
+});
+
+$(function () {
+  $('#supplierproducts th a').live('click',
+    function () {
+      $.getScript(this.href);
+      return false;
+    }
+  );
+  
+  $('#supplierproducts_search input').keyup(function () {
+    $.get($("#supplierproducts_search").attr("action"), $("#supplierproducts_search").serialize(), null, 'script');
+    return false;
+  });
+});
+
+$(function () {
   $('#suppliers th a').live('click',
     function () {
       $.getScript(this.href);

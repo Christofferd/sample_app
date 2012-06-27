@@ -8,7 +8,10 @@ class User < ActiveRecord::Base
 	has_many :followers, through: :reverse_relationships, source: :follower
 	has_many :products, dependent: :destroy
 	has_many :orders, dependent: :destroy
+	has_many :orderlines, :through => :orders
 	has_many :suppliers, dependent: :destroy
+	has_many :supplierproducts, :through => :suppliers
+	has_many :purchases, :through => :suppliers
 
 	before_save { |user| user.email = email.downcase }
 	before_save :create_remember_token

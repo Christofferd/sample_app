@@ -1,0 +1,21 @@
+<%= form_tag supplierproducts_path, :method => :get, :id => "supplierproducts_search" do %>
+  <p>
+    <%= text_field_tag :search, params[:search], placeholder: "Search by SKU, product name & EAN number..." %>
+  </p>
+  <div id="supplierproducts"><%= render 'supplierproducts' %></div>
+<% end %>
+
+<div id="facets">
+  <h3>Supplier</h3>
+  <ul>
+    <% for row in @search.facet(:supplier_id).rows %>
+      <li>
+        <% if params[:supplier_id].blank? %>
+          <%= link_to row.value, :supplier_id => row.value %> (<%= row.count %>)
+        <% else %>
+          <strong><%= row.value %></strong> (<%= link_to "Show all suppliers", :supplier_id => nil %>)
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>

@@ -4,10 +4,11 @@ class ProductsController < ApplicationController
 
 	def index
 		@user = current_user
-	  	@search = @user.products.search do
-	    fulltext params[:search]
-	  end
-	  @products = @search.results
+			@search = @user.products.search do
+			fulltext params[:search]
+#			order_by sort_column, sort_direction
+		end
+		@products = @search.results
 	end
 
 	private

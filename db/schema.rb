@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120620145357) do
+ActiveRecord::Schema.define(:version => 20120624174713) do
 
   create_table "microposts", :force => true do |t|
     t.string   "content"
@@ -54,6 +54,17 @@ ActiveRecord::Schema.define(:version => 20120620145357) do
     t.datetime "updated_at",                     :null => false
   end
 
+  create_table "productrelationships", :force => true do |t|
+    t.integer  "follower_id"
+    t.integer  "followed_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "productrelationships", ["followed_id"], :name => "index_productrelationships_on_followed_id"
+  add_index "productrelationships", ["follower_id", "followed_id"], :name => "index_productrelationships_on_follower_id_and_followed_id", :unique => true
+  add_index "productrelationships", ["follower_id"], :name => "index_productrelationships_on_follower_id"
+
   create_table "products", :force => true do |t|
     t.integer  "sku"
     t.string   "name"
@@ -67,6 +78,29 @@ ActiveRecord::Schema.define(:version => 20120620145357) do
 
   add_index "products", ["sku", "name", "ean"], :name => "index_products_on_sku_and_name_and_ean"
 
+  create_table "purchaselines", :force => true do |t|
+    t.string   "sku"
+    t.string   "name"
+    t.string   "ean"
+    t.integer  "qty_purchased"
+    t.integer  "qty_received"
+    t.integer  "price"
+    t.integer  "purchase_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "purchases", :force => true do |t|
+    t.integer  "supplier_id"
+    t.string   "state",           :default => "open"
+    t.string   "delivery_number"
+    t.string   "invoice_number"
+    t.integer  "shipping_fee"
+    t.datetime "date"
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+  end
+
   create_table "relationships", :force => true do |t|
     t.integer  "follower_id"
     t.integer  "followed_id"
@@ -77,6 +111,19 @@ ActiveRecord::Schema.define(:version => 20120620145357) do
   add_index "relationships", ["followed_id"], :name => "index_relationships_on_followed_id"
   add_index "relationships", ["follower_id", "followed_id"], :name => "index_relationships_on_follower_id_and_followed_id", :unique => true
   add_index "relationships", ["follower_id"], :name => "index_relationships_on_follower_id"
+
+  create_table "supplierproducts", :force => true do |t|
+    t.string   "sku"
+    t.string   "name"
+    t.integer  "stock"
+    t.integer  "price"
+    t.integer  "ean"
+    t.integer  "supplier_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "supplierproducts", ["sku", "name", "ean"], :name => "index_supplierproducts_on_sku_and_name_and_ean"
 
   create_table "suppliers", :force => true do |t|
     t.string   "name"
